@@ -30,7 +30,6 @@ class NeuralNetwork:
             self.W.append(w_ / layers[i])
             self.b.append(b_)
 
-    #mô hình neural network
     def __repr__(self):
         return "Neural network [{}]".format("-".join(str(l) for l in self.layers))
 
@@ -95,3 +94,10 @@ y = data[:, 2].reshape(-1, 1)
 
 p = NeuralNetwork([X.shape[1], 2, 1], 0.1)
 p.fit(X, y, 10000, 100)
+
+# Dự đoán kết quả sau khi huấn luyện
+predictions = p.predict(X)
+
+# In ra kết quả dự đoán và so sánh với nhãn thực tế
+for i in range(len(predictions)):
+    print("Input:", X[i], "Predicted:", predictions[i], "Actual:", y[i])
